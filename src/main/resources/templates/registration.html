@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Реєстрація</title>
+    <link rel="stylesheet" href="../static/css/registration.css">
+    <script src="../static/js/script.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <div class="top-buttons">
+                <button id="goMainPage" onclick="goTo('main')">Головна</button>
+                <button id="userPage" onclick="goTo('log_in')">
+                    <img src="../static/img/user1.png" alt="user">
+                </button>
+            </div>
+            <div class="login-form">
+                <form action="">
+                    <input type="text" id="login" required placeholder="Введіть ім'я користувача"><br>
+<!--                    <label for="email">E-mail</label><br>-->
+                    <input type="text" id="email" placeholder="Введіть e-mail" required><br>
+<!--                    <label for="password">Пароль</label><br>-->
+                    <input type="password" id="password" placeholder="Введіть пароль" required><br>
+                    <input type="text" id="repeatPassword" placeholder="Повторіть пароль" required><br>
+                    <input type="checkbox" id="show-password">
+                    <label for="show-password">Показати пароль</label><br>
+                    <input type="button" id="enter" value="Зареєстуватись"><br>
+                </form>
+            </div>
+        </div>
+        <footer>
+            <div class="rights">
+                <p>Всі права захищено &copy; 2023</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

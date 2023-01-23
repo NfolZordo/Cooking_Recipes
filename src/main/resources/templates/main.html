@@ -1,18 +1,37 @@
-<!DOCTYPE HTML>
-<html xmlns:th="https://www.thymeleaf.org">
+<!DOCTYPE html>
+<html  xmlns:th="https://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes Guid</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <script th:src="@{/js/script.js}"></script>
 </head>
 <body>
-
-<form method="get">
-    <input type="text" name="search"/>
-    <input type="submit" value="Find"/>
-</form>
-<div th:each="rep : ${recipes}">
-    <h4 th:text="${rep.name}"/>
-    <p th:text="${rep.recipe}"/>
-</div>
+    <div class="wrapper">
+        <div class="content">
+            <div class="top-buttons">
+                <button id="goMainPage" onclick="goTo('main')">Головна</button>
+                <button id="userPage" onclick="goTo('log_in')">
+                    <img src="/img/user1.png" alt="user">
+                </button>
+            </div>
+        </div>
+        <div class="search">
+            <form method="get">
+                <input type="text" name="search"/>
+                <input class="search_button" type="submit" value="Find"/>
+            </form>
+            <div th:each="rep : ${recipes}">
+                <h4 th:text="${rep.name}"/>
+                <p th:text="${rep.recipe}"/>
+            </div>
+        </div>
+        <footer>
+            <div class="rights">
+                <p>Всі права захищено &copy; 2023</p>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>
