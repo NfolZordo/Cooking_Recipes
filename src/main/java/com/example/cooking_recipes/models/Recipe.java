@@ -14,7 +14,7 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String name, ingredients, details;
+    private String name, ingredients, recipe;
 
     public int getId() {
         return id;
@@ -40,12 +40,11 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
-    public String getDetails() {
-        return details;
+    public String getRecipe() {
+        return recipe;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
+    public void setRecipe(String recipe) {
+        this.recipe = recipe;
     }
-
 }
