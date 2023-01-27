@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html  xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipes Guid</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
-    <script th:src="@{/js/script.js}"></script>
+    <link rel="stylesheet" th:href="@{css/main.css}">
+    <script th:src="@{js/script.js}"></script>
 </head>
 <body>
     <div class="wrapper">
         <div class="content">
             <div class="top-buttons">
-                <button id="goMainPage" onclick="goTo('main')">Головна</button>
-                <button id="userPage" onclick="goTo('log_in')">
+                <button id="goMainPage" onclick="goTo('/')">Головна</button>
+                <button id="userPage" onclick="goTo('/home')">
                     <img src="/img/user1.png" alt="user">
                 </button>
             </div>
@@ -25,6 +25,7 @@
             <div th:each="rep : ${recipes}">
                 <h4 th:text="${rep.name}"/>
                 <p th:text="${rep.recipe}"/>
+                <button th:id="${rep.id}" onClick="addToFavorite(this.id)">В улюблене</button>
             </div>
         </div>
         <footer>
@@ -35,3 +36,4 @@
     </div>
 </body>
 </html>
+

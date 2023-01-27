@@ -1,8 +1,11 @@
-package com.example.cooking_recipes.controllers;
+package com.practice.cooking_recipes.controller;
 
-import com.example.cooking_recipes.models.Recipe;
-import com.example.cooking_recipes.repo.RecipesRepository;
+import com.practice.cooking_recipes.model.Recipe;
+import com.practice.cooking_recipes.repository.RecipesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +22,13 @@ public class MainController {
     private RecipesRepository recipesRepository;
 
     @GetMapping("/")
-    public String main(Model model, @RequestParam(value = "search", required = false ) String search) {
+    public String getMainPage(Model model, @RequestParam(value = "search", required = false ) String search) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserName = authentication.getName();
+//            return currentUserName;
+        }
+
         Iterable<Recipe> allRecipes = recipesRepository.findAll();
         List<Recipe> neededRecipes = new ArrayList<>();
         for (Recipe recipe: allRecipes) {
@@ -33,5 +42,5 @@ public class MainController {
         model.addAttribute("recipes", neededRecipes);
         return "main";
     }
-}
 
+}
