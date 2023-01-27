@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{css/main.css}">
+    <script th:src="@{js/script.js}"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="content">
+        <div class="top-buttons">
+            <button id="goMainPage" onclick="goTo('/')">Головна</button>
+            <h2 class="firstName" th:text="${userName.firstName}"/>
+            <h2 class="lastName" th:text="${userName.lastName}"/>
+
+            <form action="/logout" method="POST">
+                <button type="submit">Logout</button>
+            </form>
+            <img src="/img/user1.png" alt="user">
+            </button>
+        </div>
+    </div>
+    <div class="search">
+        <div th:each="rep : ${recipes}">
+            <h4 th:text="${rep.name}"/>
+            <p th:text="${rep.recipe}"/>
+        </div>
+    </div>
+    <footer>
+        <div class="rights">
+            <p>Всі права захищено &copy; 2023</p>
+        </div>
+    </footer>
+</div>
+</body>
+<!--<script th:inline="javascript">-->
+<!--    let userId = userName.id;-->
+<!--    let recipeId = rep.id;-->
+<!--    console.info([[${userName.firstName}]]);-->
+<!--</script>-->
+</html>

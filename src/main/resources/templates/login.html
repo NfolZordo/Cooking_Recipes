@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<http pattern="/resources/**" security="none" />
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вхід</title>
+    <link rel="stylesheet" type="text/css" th:href="@{css/log_in.css}">
+    <script th:src="@{js/script.js}"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="content">
+        <div class="top-buttons">
+            <button id="goMainPage" onclick="goTo('/')">Головна</button>
+            <button id="userPage" onclick="goTo('/home')">
+                <img src="/img/user1.png" alt="user">
+            </button>
+        </div>
+        <div class="login-form">
+            <form  method="post" action="/login">
+                <label for="email">E-mail</label><br>
+                <input type="text" name="username" id="email" placeholder="Введіть e-mail"><br>
+                <label for="password">Пароль</label><br>
+                <input type="password"  name="password"  id="password" placeholder="Введіть пароль"><br>
+                <input type="checkbox"  id="show-password">
+                <label for="show-password">Показати пароль</label><br>
+                <button type="submit">Ввійти</button>
+            </form>
+            <input type="button" id="create-new" onclick="goTo('registration')" value="Створити новий обліковий запис">
+
+        </div>
+    </div>
+    <footer>
+        <div class="rights">
+            <p>Всі права захищено &copy; 2023</p>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
