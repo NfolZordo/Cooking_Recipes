@@ -22,21 +22,26 @@ public class MainController {
     private RecipesRepository recipesRepository;
 
     @GetMapping("/")
-    public String getMainPage(Model model, @RequestParam(value = "search", required = false ) String search) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            String currentUserName = authentication.getName();
-//            return currentUserName;
+    public String getMainPage(Model model, @RequestParam(value = "search", required = false ) String search,
+                                            @RequestParam(value = "type_search", required = false) String typeSearch) {
+
+        List<Recipe> neededRecipes = new ArrayList<>();
+        if (search == null) {
+            return "main";
         }
 
-        Iterable<Recipe> allRecipes = recipesRepository.findAll();
-        List<Recipe> neededRecipes = new ArrayList<>();
-        for (Recipe recipe: allRecipes) {
-            if (search != null && (Arrays.equals(Arrays.stream(recipe.getIngredients().toLowerCase().split(",")).sorted().toArray(String[]::new),
-                    Arrays.stream(search.toLowerCase().split(",")).sorted().toArray(String[]::new))
-                    || search.equals("*"))) {
+        if (typeSearch.equals("ONE")) {
+            neededRecipes = recipesRepository.findRecipeByIngredient("%" + search + "%");
+        }
+        else if (typeSearch.equals("ALL")) {
+            Iterable<Recipe> allRecipes = recipesRepository.findAll();
+            for (Recipe recipe: allRecipes) {
+                if (Arrays.equals(Arrays.stream(recipe.getIngredients().toLowerCase().split(",")).sorted().toArray(String[]::new),
+                        Arrays.stream(search.toLowerCase().split(",")).sorted().toArray(String[]::new))
+                        || search.equals("*")) {
 
-                neededRecipes.add(recipe);
+                    neededRecipes.add(recipe);
+                }
             }
         }
         model.addAttribute("recipes", neededRecipes);
@@ -44,3 +49,8 @@ public class MainController {
     }
 
 }
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+//            String currentUserName = authentication.getName();
+//            return currentUserName;
+//        }

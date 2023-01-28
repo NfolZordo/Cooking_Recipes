@@ -20,6 +20,12 @@
         <div class="search">
             <form method="get">
                 <input type="text" name="search"/>
+                <div>
+                    <input type="radio" id="ONE" name="type_search" value="ONE" checked="TRUE">
+                    <label for="ONE">Всі рецепти які містять даний інгредієнт</label>
+                    <input type="radio" id="css" name="type_search" value="ALL">
+                    <label for="css">Рецепти за повним збігом</label>
+                </div>
                 <input class="search_button" type="submit" value="Find"/>
             </form>
             <div th:each="rep : ${recipes}">
