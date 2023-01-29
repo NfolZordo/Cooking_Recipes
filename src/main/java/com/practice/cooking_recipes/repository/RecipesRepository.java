@@ -32,6 +32,13 @@ public interface RecipesRepository extends CrudRepository<Recipe, Integer>, JpaS
             @Param("ingredient") String ingredient
     );
     @Query(value =
+            "SELECT * " +
+                    "FROM public.recipe " +
+                    "WHERE id = :id ", nativeQuery = true)
+    Recipe findRecipeById(
+            @Param("id") Long id
+    );
+    @Query(value =
             "SELECT ingredients " +
             "FROM recipe; ", nativeQuery = true)
     List<String> getAllIngredient();

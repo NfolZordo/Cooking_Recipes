@@ -1,7 +1,9 @@
 package com.practice.cooking_recipes.controller;
 
+import com.practice.cooking_recipes.model.Recipe;
 import com.practice.cooking_recipes.model.User;
 import com.practice.cooking_recipes.controller.*;
+import com.practice.cooking_recipes.model.UserRecipe;
 import com.practice.cooking_recipes.repository.RecipesRepository;
 import com.practice.cooking_recipes.repository.UserRecipeRepository;
 import com.practice.cooking_recipes.repository.UserRepository;
@@ -42,13 +44,12 @@ public class ExtraFunctionsController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
         User user = userRepository.findNedUser(currentUserName);
+        Recipe recipe = recipesRepository.findRecipeById(recipeId);
+        UserRecipe userRecipe = new UserRecipe(user,recipe);
         List<UserRecipeRepository> repeatCheck = userRecipeRepository.repeatCheck(user.getId(),recipeId);
         if(repeatCheck.size() == 0) {
-            try{
-                userRecipeRepository.addUserRecipe(user.getId(), recipeId);
-            }catch (Exception e) {
-                return "ok";
-            }
+            userRecipeRepository.save(userRecipe);
+
         }
         return "repeat recipe";
     }
@@ -61,7 +62,7 @@ public class ExtraFunctionsController {
             Arrays.stream(ingredient.split(",")).forEach(i -> uniqueIngredients.add(i.toLowerCase()) );
         }
         try {
-            FileWriter ingredientsFile = new FileWriter("src/main/resources/static/js/List_ingredients.txt");
+            FileWriter ingredientsFile = new FileWriter("src/main/resources/static/List_ingredients.txt");
             uniqueIngredients.forEach(a -> {
                 try {
                     ingredientsFile.write(a + " | ");

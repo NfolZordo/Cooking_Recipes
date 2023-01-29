@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 public class MainController {
@@ -31,7 +34,10 @@ public class MainController {
         }
 
         if (typeSearch.equals("ONE")) {
-            neededRecipes = recipesRepository.findRecipeByIngredient("%" + search + "%");
+            String searchUpgrade = Arrays.stream(search.toLowerCase().split(" ")).map(Objects::toString)
+                    .collect(Collectors.joining("%"));
+
+            neededRecipes = recipesRepository.findRecipeByIngredient("%" + searchUpgrade + "%");
         }
         else if (typeSearch.equals("ALL")) {
             Iterable<Recipe> allRecipes = recipesRepository.findAll();

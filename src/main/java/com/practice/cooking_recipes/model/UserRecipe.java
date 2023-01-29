@@ -26,8 +26,7 @@ public class UserRecipe {
     public UserRecipe() {
     }
 
-    public UserRecipe(Long id, User user, Recipe recipe) {
-        this.id = id;
+    public UserRecipe( User user, Recipe recipe) {
         this.user = user;
         this.recipe = recipe;
     }
