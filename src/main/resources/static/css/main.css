@@ -26,6 +26,8 @@ img {
     height: auto;
 }
 
+/*головний блок*/
+
 .content {
     flex: 1 1 auto;
     background-color: rgba(255, 204, 153, 0.5);
@@ -34,6 +36,8 @@ img {
     background-position: center;
     background-size: cover;
 }
+
+/*блок з кнопками для переходу на головну і сторінку користувача*/
 
 .content .top-buttons {
     display: flex;
@@ -62,6 +66,133 @@ img {
     margin-right: 5%;
 }
 
+.content .top-buttons button:hover {
+    cursor: pointer;
+}
+
+/*блок з пошуком і кнопкою "додати"*/
+
+.main-content .search-block {
+    margin-left: 25%;
+    min-height: 100px;
+}
+
+.main-content .search-block .autocomplete {
+    width: 50%;
+    float: left;
+    position: relative;
+    display: inline-block;
+}
+
+.main-content .search-block .autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-left: 30px;
+    font-size: 1.25em;
+}
+
+.main-content .search-block .autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+.main-content .search-block .autocomplete-items:hover {
+    background-color: #e9e9e9;
+}
+
+.main-content .search-block .autocomplete-active {
+    background-color: dodgerblue !important;
+    color: #ffffff;
+}
+
+.main-content .search-block #search-line {
+    width: 100%;
+    font-family: 'Times New Roman';
+    font-size: 2em;
+    border: 5px solid black;
+    border-radius: 50px;
+    padding: 15px 20px;
+}
+
+.main-content .search-block #add-button {
+    margin-left: 70px;
+    font-family: 'Times New Roman';
+    font-size: 2em;
+    border: 5px solid black;
+    border-radius: 50px;
+    padding: 15px 20px;
+    background-color: #2FC916;
+}
+
+.main-content .search-block #add-button:hover {
+    cursor: pointer;
+}
+
+/*блок зі списками*/
+
+.main-content .listboxes-block {
+    margin-left: 25%;
+    margin-top: 100px;
+}
+
+.main-content .listboxes-block h2 {
+    color: red;
+    /*    filter: blur(8px);*/
+    backdrop-filter: blur(7px);
+    margin-right: 60%;
+    text-align: center;
+    border-radius: 50px;
+    font-size: 2em;
+    width: auto;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-left: 10%;
+}
+
+.main-content .listboxes-block select {
+    width: 55%;
+    float: left;
+    overflow: auto;
+    margin-bottom: 100px;
+    min-height: 200px;
+    border: 5px solid black;
+    border-radius: 25px;
+}
+
+.main-content .listboxes-block select option {
+    font-family: 'Times New Roman';
+    font-size: 2em;
+    padding: 5px 15px;
+}
+
+.main-content .listboxes-block .ingredients-block {
+    min-height: 500px;
+}
+
+.main-content .listboxes-block .ingredients-block #remove-button {
+    font-family: 'Times New Roman';
+    font-size: 2em;
+    border: 5px solid black;
+    border-radius: 50px;
+    padding: 15px 20px;
+    background-color: red;
+    margin-left: 20px;
+}
+
+.main-content .listboxes-block .ingredients-block #remove-button:hover {
+    cursor: pointer;
+}
+
+/*footer*/
+
 footer {
     width: 98%;
     height: 100px;
@@ -75,38 +206,4 @@ footer .rights {
     float: right;
     text-align: right;
     vertical-align: middle;
-}
-.search {
-    position: absolute;
-    margin-top: 15%;
-    margin-left: 15%;
-    margin-right: 15%;
-    width: 80%;
-    background-color: bisque;
-
-    margin-left: 5%;
-
-    border-radius: 25px;
-    padding: 10px 35px;
-    font-family: 'Times New Roman';
-    font-size: 1.5em;
-}
-.search form {
-    display: grid;
-    border: 5px solid white;
-    background-color: black;
-    color: white;
-}
-
-.search h4{
-    margin-top: 20px;
-}
-
-.search_button {
-    /*border: 5px solid white;*/
-    background-color: black;
-    color: white;
-    height: 25px;
-    font-family: 'Times New Roman';
-    font-size: 1em;
 }

@@ -2,7 +2,6 @@ package com.practice.cooking_recipes.controller;
 
 import com.practice.cooking_recipes.model.Recipe;
 import com.practice.cooking_recipes.model.User;
-import com.practice.cooking_recipes.controller.*;
 import com.practice.cooking_recipes.model.UserRecipe;
 import com.practice.cooking_recipes.repository.RecipesRepository;
 import com.practice.cooking_recipes.repository.UserRecipeRepository;
@@ -16,15 +15,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 public class ExtraFunctionsController {
@@ -52,6 +51,22 @@ public class ExtraFunctionsController {
 
         }
         return "repeat recipe";
+    }
+    @PostMapping("/search")
+    public List<Recipe> getRecipe(Model model, @RequestParam("search") String[] search) {
+
+        System.out.println(search);
+        List<Recipe> neededRecipes = new ArrayList<>();
+        String searchUpgrade = Arrays.stream(search).map(s->s.toLowerCase())
+                .map(Objects::toString)
+                .collect(Collectors.joining("%"));
+        for (String s : search) {
+            System.out.println(s);
+        }
+
+        neededRecipes = recipesRepository.findRecipeByIngredient("%" + searchUpgrade + "%");
+
+        return neededRecipes;
     }
 
     @GetMapping("/createListIngredients")

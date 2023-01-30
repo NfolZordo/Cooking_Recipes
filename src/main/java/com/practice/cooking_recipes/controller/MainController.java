@@ -25,31 +25,29 @@ public class MainController {
     private RecipesRepository recipesRepository;
 
     @GetMapping("/")
-    public String getMainPage(Model model, @RequestParam(value = "search", required = false ) String search,
-                                            @RequestParam(value = "type_search", required = false) String typeSearch) {
+    public String getMainPage(Model model, @RequestParam(value = "search", required = false ) String search) {
 
         List<Recipe> neededRecipes = new ArrayList<>();
         if (search == null) {
             return "main";
         }
 
-        if (typeSearch.equals("ONE")) {
-            String searchUpgrade = Arrays.stream(search.toLowerCase().split(" ")).map(Objects::toString)
-                    .collect(Collectors.joining("%"));
+        String searchUpgrade = Arrays.stream(search.toLowerCase().split(" ")).map(Objects::toString)
+                .collect(Collectors.joining("%"));
 
-            neededRecipes = recipesRepository.findRecipeByIngredient("%" + searchUpgrade + "%");
-        }
-        else if (typeSearch.equals("ALL")) {
-            Iterable<Recipe> allRecipes = recipesRepository.findAll();
-            for (Recipe recipe: allRecipes) {
-                if (Arrays.equals(Arrays.stream(recipe.getIngredients().toLowerCase().split(",")).sorted().toArray(String[]::new),
-                        Arrays.stream(search.toLowerCase().split(",")).sorted().toArray(String[]::new))
-                        || search.equals("*")) {
+        neededRecipes = recipesRepository.findRecipeByIngredient("%" + searchUpgrade + "%");
 
-                    neededRecipes.add(recipe);
-                }
-            }
-        }
+//        else if (typeSearch.equals("ALL")) {
+//            Iterable<Recipe> allRecipes = recipesRepository.findAll();
+//            for (Recipe recipe: allRecipes) {
+//                if (Arrays.equals(Arrays.stream(recipe.getIngredients().toLowerCase().split(",")).sorted().toArray(String[]::new),
+//                        Arrays.stream(search.toLowerCase().split(",")).sorted().toArray(String[]::new))
+//                        || search.equals("*")) {
+//
+//                    neededRecipes.add(recipe);
+//                }
+//            }
+//        }
         model.addAttribute("recipes", neededRecipes);
         return "main";
     }

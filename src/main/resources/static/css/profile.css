@@ -1,0 +1,249 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html { height: 100%;}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    font-size: 1em;
+    line-height: 135%;
+}
+
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(70, 130, 180, 0.5);
+    background-image: url(../img/bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/*головний блок*/
+
+.content {
+    flex: 1 1 auto;
+    margin: 0 15%;
+    background-color: #CBE1F3;
+}
+
+/*---------end---------*/
+
+/*блок з кнопками для переходу на головну і сторінку користувача*/
+
+.content .top-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 100px;
+    margin-top: 50px;
+}
+
+.content .top-buttons #goMainPage {
+    margin-left: 5%;
+    border: 5px solid white;
+    background-color: black;
+    color: white;
+    border-radius: 25px;
+    padding: 10px 35px;
+    font-family: 'Times New Roman';
+    font-size: 1.5em;
+}
+
+.content .top-buttons #userPage {
+    width: 65px;
+    height: 65px;
+    background-color: rgba(28,28,28,0);
+    border: none;
+    margin-right: 5%;
+}
+
+.content .top-buttons button:hover {
+    cursor: pointer;
+}
+
+/*---------end---------*/
+
+
+/*блок з інформацією про користувача*/
+
+.content .user-info {
+    margin-bottom: 120px;
+}
+
+.content .user-info img {
+    width: 150px;
+    height: 150px;
+    border: 3px solid black;
+    border-radius: 25px;
+    float: left;
+    margin: 0 50px;
+}
+
+.content .user-info p {
+    font-family: 'Times New Roman';
+    font-size: 1.75em;
+    line-height: 20px;
+}
+
+hr {
+    display: block;
+    background-color: black;
+    height: 2px;
+    margin: 10px 10px;
+}
+
+/*---------end---------*/
+
+/*блок з рецептами*/
+
+.recipes-list {
+    max-width: 1024px;
+    padding: 0 20px;
+    margin: 5% 10%;
+}
+
+.recipes-list #recipes-header {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.recipes-list label {
+    font-size: 2em;
+}
+
+.recipes-list .ingredients p {
+    font-size: 2.25em;
+    text-decoration: underline;
+}
+
+.recipes-list .ingredients li {
+    list-style: none;
+    font-size: 1.75em;
+    line-height: 50px;
+}
+
+.recipes-list .hide,
+.recipes-list .hide + label ~ div {
+    display: none;
+}
+
+.recipes-list .hide + label {
+    margin: 0;
+    padding: 0;
+    color: green;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.recipes-list .hide:checked + label {
+    color: red;
+    border-bottom: 0;
+    margin-bottom: 15px;
+}
+
+.recipes-list .hide:checked + label + div {
+    display: block;
+    background-color: #efefef;
+    -moz-box-shadow: inset 3px 3px 10px #7d8e8f;
+    -webkit-box-shadow: inset 3px 3px 10px #7d8e8f;
+    box-shadow: inset 3px 3px 10px #7d8e8f;
+    margin-left: 20px;
+    padding: 35px;
+    border-radius: 25px;
+    -webkit-animation:fade ease-in 0.5s;
+    -moz-animation:fade ease-in 0.5s;
+}
+
+@-moz-keyframes fade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.recipes-list .hide + label:before {
+    background-color: #1e90ff;
+    color: #fff;
+    content: '\002b';
+    display: block;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    height: 16px;
+    line-height: 16px;
+    margin: 3px 5px;
+    text-align: center;
+    width: 16px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.recipes-list .hide:checked + label:before {
+    content: '\2212';
+}
+
+/*---------end---------*/
+
+/*footer*/
+
+footer {
+    width: 98%;
+    height: 100px;
+    float: left;
+    padding: 1%;
+    background-color: #4682B4;
+}
+
+footer .rights {
+    width: 50%;
+    float: right;
+    text-align: right;
+    vertical-align: middle;
+}
+/*---------end---------*/
+
+
+/*ПРАВКИ З БЕКА*/
+
+#recipes-element{
+    margin-bottom: 15px;
+}
+/*---------end---------*/
