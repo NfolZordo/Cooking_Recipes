@@ -37,38 +37,6 @@ public class ExtraFunctionsController {
     @Autowired
     UserRecipeRepository userRecipeRepository;
 
-    @PostMapping("/addToFavorite")
-    public String addToFavorite(Model model, @RequestParam("recipeId") Long recipeId) {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUserName = authentication.getName();
-        User user = userRepository.findNedUser(currentUserName);
-        Recipe recipe = recipesRepository.findRecipeById(recipeId);
-        UserRecipe userRecipe = new UserRecipe(user,recipe);
-        List<UserRecipeRepository> repeatCheck = userRecipeRepository.repeatCheck(user.getId(),recipeId);
-        if(repeatCheck.size() == 0) {
-            userRecipeRepository.save(userRecipe);
-
-        }
-        return "repeat recipe";
-    }
-    @PostMapping("/search")
-    public List<Recipe> getRecipe(Model model, @RequestParam("search") String[] search) {
-
-        System.out.println(search);
-        List<Recipe> neededRecipes = new ArrayList<>();
-        String searchUpgrade = Arrays.stream(search).map(s->s.toLowerCase())
-                .map(Objects::toString)
-                .collect(Collectors.joining("%"));
-        for (String s : search) {
-            System.out.println(s);
-        }
-
-        neededRecipes = recipesRepository.findRecipeByIngredient("%" + searchUpgrade + "%");
-
-        return neededRecipes;
-    }
-
     @GetMapping("/createListIngredients")
     public void createListIngredients() {
         Set<String> uniqueIngredients = new HashSet<>();
@@ -85,7 +53,6 @@ public class ExtraFunctionsController {
                     e.printStackTrace();
                 }
             });
-
             ingredientsFile.close();
         } catch (IOException e) {
             System.out.println("An error occurred.");

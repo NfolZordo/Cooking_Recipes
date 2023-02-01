@@ -14,12 +14,14 @@ public interface RecipesRepository extends CrudRepository<Recipe, Integer>, JpaS
 
     @Override
     List<UserRecipe> findAll(Specification<UserRecipe> spec);
+    Recipe findRecipeById(Integer id);
 
+    Recipe findRecipeByName(String name);
     @Query(value =
             "SELECT  r.* " +
-            "FROM user_recipe " +
-            "JOIN users u ON user_recipe.user_id = u.id " +
-            "JOIN recipe r ON user_recipe.recipe_id = r.id " +
+            "FROM users_recipes " +
+            "JOIN users u ON users_recipes.user_id = u.id " +
+            "JOIN recipe r ON users_recipes.id = r.id " +
             "WHERE u.email = :email ", nativeQuery = true)
     List<Recipe> findFavorRecipeByEmail(
             @Param("email") String email
@@ -35,7 +37,7 @@ public interface RecipesRepository extends CrudRepository<Recipe, Integer>, JpaS
             "SELECT * " +
                     "FROM public.recipe " +
                     "WHERE id = :id ", nativeQuery = true)
-    Recipe findRecipeById(
+    Recipe findRecipeByRecipe_id(
             @Param("id") Long id
     );
     @Query(value =

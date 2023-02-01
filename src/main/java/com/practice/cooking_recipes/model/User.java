@@ -3,12 +3,16 @@ package com.practice.cooking_recipes.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
 @Table(name = "users")
 public class User {
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "email")
@@ -19,22 +23,43 @@ public class User {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "role")
-    private Role role;
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "status")
-    private Status status;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id" ),
+    inverseJoinColumns = @JoinColumn(
+                    name = "role_id"))
+    private Collection<Role> roles = new HashSet<>();
+
+    public void addRoles(Role roles) {
+        this.roles.add(roles);
+    }
+    //    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinTable(
+//            name = "users_recipes",
+//            joinColumns = @JoinColumn(
+//                    name = "user_id" ),
+//            inverseJoinColumns = @JoinColumn(
+//                    name = "id"))
+//    private Collection<Recipe> recipe = new HashSet<>();
 
     public User() {
     }
 
-    public User(String email, String password, String firstName, String lastName, Role role, Status status) {
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public User(String email, String password, String firstName, String lastName) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.role = role;
-        this.status = status;
+
+        Collection<Role> userRole = new HashSet<>();
+        userRole.add(new Role("USER"));
+        this.roles = userRole;
     }
 }

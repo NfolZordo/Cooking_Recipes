@@ -3,6 +3,7 @@ package com.practice.cooking_recipes.model;
 import lombok.Data;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,15 +14,16 @@ import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "user_recipe")
+@Table(name = "users_recipes")
 public class UserRecipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
-    @ManyToOne(fetch = FetchType.LAZY)
     private Recipe recipe;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
 
     public UserRecipe() {
     }

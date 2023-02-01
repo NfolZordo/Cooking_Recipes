@@ -246,4 +246,7 @@ footer .rights {
 #recipes-element{
     margin-bottom: 15px;
 }
+.hidden {
+    visibility: hidden;
+}
 /*---------end---------*/

@@ -12,6 +12,8 @@
         <div class="content">
             <div class="top-buttons">
                 <button id="goMainPage" onclick="goTo('/')">Головна</button>
+                <button class="hidden" id="goAdminPage" onclick="goTo('/admin')">Призначити модератора</button>
+                <button class="hidden" id="goModerPage" onclick="goTo('/moder')">Додати новий рецепт рецепт</button>
                 <form  action="/logout" method="POST">
                     <button type="submit">Logout</button>
                 </form>
@@ -45,6 +47,7 @@
             </div>
         </footer>
     </div>
+    <script th:src="@{js/home.js}"></script>
 </body>
 <!--<script th:inline="javascript">-->
 <!--    let userId = userName.id;-->

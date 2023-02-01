@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+</head>
+<body>
+    <form  action="/admin" method="POST">
+        <p th:text="${error}" style="color:red;" />
+        <input type="text" name="email" placeholder="email користувача якому бажаєте призначити роль">
+        <button type="submit">Призначити користувача модератором</button>
+    </form>
+</body>
+</html>

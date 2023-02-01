@@ -5,28 +5,25 @@ function goTo(pageName) {
 
 
 function addToFavorite(clicked_id) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
+    let XMLHttp = new XMLHttpRequest();
+    XMLHttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200 && this.responseText.length > 100 ) {
             alert("Авторизуйтесь для можливості добавлення рецептів в список улюблених");
         }
     };
-    xhttp.open("POST", "/addToFavorite", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("recipeId=" + clicked_id);
+    XMLHttp.open("POST", "/addToFavorite", true);
+    XMLHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    XMLHttp.send("recipeId=" + clicked_id);
 }
 
 function getRecipe(ingredients) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText)
-        }
-    };
-    xhttp.open("POST", "/search", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("search=" + ingredients);
+    let XMLHttp = new XMLHttpRequest();
+    XMLHttp.open("POST", "/search", false);
+    XMLHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    XMLHttp.send("search=" + ingredients);
+    return XMLHttp.responseText;
 }
+
 
 var list = [];
 
