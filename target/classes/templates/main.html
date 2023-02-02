@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<http pattern="/resources/**" security="none" />
+
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes Guid</title>
+    <link rel="stylesheet" type="text/css"  th:href="@{css/main.css}">
+    <script th:src="@{js/script.js}"></script>
+
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <div class="top-buttons">
+                <button id="goMainPage" onclick="goTo('/')">Головна</button>
+                <button id="userPage" onclick="goTo('/home')">
+                    <img src="/img/user1.png" alt="user">
+                </button>
+            </div>
+            <div class="main-content">
+                <div class="search-block">
+                    <div class="autocomplete">
+                        <input type="text" id="search-line" placeholder="Введіть назву інгрідієнта">
+                    </div>
+                    <input type="button" id="add-button" value="+ Додати" onclick="addToList()">
+                </div>
+                <div class="listboxes-block">
+                    <div class="ingredients-block">
+                        <h2>Список інгрідієнтів</h2>
+                        <select id="ingredients-list" multiple></select>
+                        <input type="button" id="remove-button" value="Видалити із списку" onclick="removeFromList()">
+                    </div>
+                    <div class="recipes-block">
+                        <h2>Список рецептів</h2>
+                        <select id="recipes-list" multiple></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="rights">
+                <p><b>&copy;</b> Designed by Oleksandr Zadorozhny, Oleksandr Sergienko and Dmytro Kavun</p>
+            </div>
+        </footer>
+    </div>
+    <script th:src="@{js/autocomplete.js}"></script>
+</body>
+</html>
+

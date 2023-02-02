@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Реєстрація</title>
+    <link rel="stylesheet" th:href="@{css/registration.css}">
+    <script th:src="@{js/script.js}"></script>
+
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <div class="top-buttons">
+                <button id="goMainPage" onclick="goTo('/')">Головна</button>
+                <button id="userPage" onclick="goTo('/home')">
+                    <img src="../img/user1.png" alt="user">
+                </button>
+            </div>
+            <div class="login-form">
+                <form class="login-form" method="post" action="/registration">
+                    <p th:text="${error}" style="color:red;" />
+                    <input type="text" id="email" name="email" class="form-control" placeholder="Email" required>
+                    <input type="text" id="first_name" name="first_name" class="form-control" placeholder="first name" required>
+                    <input type="text" id="last_name" name="last_name" class="last_name" placeholder="last name" required>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                    <input type="password" id="password_confirm" class="form-control" placeholder="Password confirm" required>
+                    <button type="submit">Зареєстуватись</button>
+                </form>
+            </div>
+        </div>
+        <footer>
+            <div class="rights">
+                <p><b>&copy;</b> Designed by Oleksandr Zadorozhny, Oleksandr Sergienko and Dmytro Kavun</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

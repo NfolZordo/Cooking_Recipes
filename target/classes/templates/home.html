@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профіль</title>
+    <link rel="stylesheet" th:href="@{css/profile.css}">
+    <script th:src="@{js/script.js}"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <div class="top-buttons">
+                <button id="goMainPage" onclick="goTo('/')">Головна</button>
+                <button class="hidden" id="goAdminPage" onclick="goTo('/admin')">Призначити модератора</button>
+                <button class="hidden" id="goModerPage" onclick="goTo('/moder')">Додати новий рецепт рецепт</button>
+                <form  action="/logout" method="POST">
+                    <button type="submit">Logout</button>
+                </form>
+                <button id="userPage" onclick="goTo('/home')">
+                    <img src="/img/user1.png" alt="user">
+                </button>
+            </div>
+            <div class="user-info">
+                <img src="/img/user.png" alt="user-image" id="user-image">
+                <p id="p-user-name" th:text="${userName.firstName } + ' ' + ${userName.lastName}" >Петренко Петро</p><br>
+                <p id="p-user-email" th:text="${userName.email}"></p><br>
+            </div>
+            <hr>
+            <div class="recipes-list">
+                <p id="recipes-header">&#9733; Збережені рецепти &#9733;</p>
+                <div th:each="rep : ${recipes}">
+                    <input type="checkbox" class="hide" th:id="hd-+${rep.id}">
+                    <label id="recipes-element" th:for="hd-+${rep.id}" th:text="${rep.name}"></label>
+                    <div>
+                        <ul class="ingredients">
+                            <p>Інгрідієнти</p>
+                            <li th:text="${rep.recipe}"></li><br>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="rights">
+                <p><b>&copy;</b> Designed by Oleksandr Zadorozhny, Oleksandr Sergienko and Dmytro Kavun</p>
+            </div>
+        </footer>
+    </div>
+    <script th:src="@{js/home.js}"></script>
+</body>
+<!--<script th:inline="javascript">-->
+<!--    let userId = userName.id;-->
+<!--    let recipeId = rep.id;-->
+<!--    console.info([[${userName.firstName}]]);-->
+<!--</script>-->
+</html>
