@@ -21,7 +21,7 @@ public interface RecipesRepository extends CrudRepository<Recipe, Integer>, JpaS
             "SELECT  r.* " +
             "FROM users_recipes " +
             "JOIN users u ON users_recipes.user_id = u.id " +
-            "JOIN recipe r ON users_recipes.id = r.id " +
+            "JOIN recipe r ON users_recipes.recipe_id = r.id " +
             "WHERE u.email = :email ", nativeQuery = true)
     List<Recipe> findFavorRecipeByEmail(
             @Param("email") String email

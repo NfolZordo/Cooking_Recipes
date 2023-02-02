@@ -6,13 +6,12 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.3.3.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
-    <groupId>net.proselyte</groupId>
-    <artifactId>springsecuritydemo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>SpringSecurityDemo</name>
-    <description>This is Spring Security course project</description>
+    <groupId>com.practice</groupId>
+    <version>0.8.0</version>
+    <artifactId>cooking_recipes</artifactId>
+    <name>Cooking_Recipes</name>
 
     <properties>
         <java.version>11</java.version>
@@ -42,6 +41,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
             <optional>true</optional>
         </dependency>
 
@@ -69,6 +69,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.0</version>
+                <configuration>
+                    <url>http://www.mydomain.com:1234/mymanager</url>
+                </configuration>
             </plugin>
         </plugins>
     </build>
