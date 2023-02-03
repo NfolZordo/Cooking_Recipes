@@ -1,31 +1,22 @@
 package com.practice.cooking_recipes.security;
 
-import com.practice.cooking_recipes.model.Role;
 import com.practice.cooking_recipes.model.User;
-import com.practice.cooking_recipes.repository.UserRoleRepository;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.management.relation.Relation;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Data
 public class SecurityUser implements UserDetails {
 
-    @Autowired
-    private static UserRoleRepository userRoleRepository;
-
     private final String username;
     private final String password;
     private final List<SimpleGrantedAuthority> authorities;
     private final boolean isActive;
-//    private final UserRoleRepository userRole = userRoleRepository;
 
     public SecurityUser(String username, String password, List<SimpleGrantedAuthority> authorities, boolean isActive) {
         this.username = username;
@@ -69,13 +60,15 @@ public class SecurityUser implements UserDetails {
         return isActive;
     }
 
-    public static UserDetails fromUser(User user, Set<SimpleGrantedAuthority> roles) {
+    public static UserDetails fromUser(User user) {
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(), user.getPassword(),
                 true,
                 true,
                 true,
                 true,
-                roles);
+                user.getRoles().stream()
+                        .map(role -> new SimpleGrantedAuthority(role.getName()))
+                        .collect(Collectors.toSet()));
     }
 }

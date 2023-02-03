@@ -33,7 +33,7 @@ public class FavoriteController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
-        User user = userRepository.findByEmail(currentUserName);
+        User user = userRepository.findByEmail(currentUserName).get();
         Recipe recipe = recipesRepository.findRecipeById(recipeId);
         UserRecipe userRecipe = new UserRecipe(user,recipe);
         List<UserRecipeRepository> repeatCheck = userRecipeRepository.repeatCheck(user.getId(),recipeId);

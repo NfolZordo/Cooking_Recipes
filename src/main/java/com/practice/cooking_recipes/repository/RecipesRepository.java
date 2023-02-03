@@ -10,11 +10,10 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface RecipesRepository extends CrudRepository<Recipe, Integer> {
-//    public interface RecipesRepository extends CrudRepository<Recipe, Integer>, JpaSpecificationExecutor<UserRecipe> {
+public interface RecipesRepository extends CrudRepository<Recipe, Integer>, JpaSpecificationExecutor<UserRecipe> {
 
-//    @Override
-//    List<UserRecipe> findAll(Specification<UserRecipe> spec);
+    @Override
+    List<UserRecipe> findAll(Specification<UserRecipe> spec);
     Recipe findRecipeById(Integer id);
 
     Recipe findRecipeByName(String name);

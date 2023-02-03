@@ -42,7 +42,7 @@ public class HomeController {
     public String getHomePage(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
-        User user = userRepository.findByEmail(currentUserName);
+        User user = userRepository.findByEmail(currentUserName).get();
 
         List<Recipe> favorRecipes = recipesRepository.findFavorRecipeByEmail(currentUserName).stream().collect(Collectors.toList());
 

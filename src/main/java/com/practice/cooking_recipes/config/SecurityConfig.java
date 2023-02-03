@@ -29,6 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.userDetailsService = userDetailsService;
     }
 
+
 //.access("hasRole('ROLE_ADMIN')")
     @Override
     protected void configure(HttpSecurity http) throws Exception {
