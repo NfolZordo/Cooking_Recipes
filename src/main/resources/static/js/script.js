@@ -21,6 +21,7 @@ function getRecipe(ingredients) {
     XMLHttp.open("POST", "/search", false);
     XMLHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XMLHttp.send("search=" + ingredients);
+    console.log(XMLHttp.responseText);
     return XMLHttp.responseText;
 }
 

@@ -6,6 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -14,20 +15,15 @@ import java.util.stream.Collectors;
 public class Role {
 
     @Id
-    @Column(name = "role_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+    private Long id;
+    @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
-    private Collection<User> users;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public Role(String name) {
+    public Role(Long id, String name) {
+        this.id = id;
         this.name = name;
     }
 
@@ -39,7 +35,11 @@ public class Role {
         this.name = name;
     }
 
-    public void setId(Integer id) {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
     }
 

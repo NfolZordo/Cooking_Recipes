@@ -1,11 +1,16 @@
 package com.practice.cooking_recipes.model;
 
+import com.practice.cooking_recipes.repository.UserRoleRepository;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Data
 @Entity
@@ -29,37 +34,28 @@ public class User {
             name = "users_roles",
             joinColumns = @JoinColumn(
                     name = "user_id" ),
-    inverseJoinColumns = @JoinColumn(
+            inverseJoinColumns = @JoinColumn(
                     name = "role_id"))
-    private Collection<Role> roles = new HashSet<>();
-
-    public void addRoles(Role roles) {
-        this.roles.add(roles);
-    }
-    //    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinTable(
-//            name = "users_recipes",
-//            joinColumns = @JoinColumn(
-//                    name = "user_id" ),
-//            inverseJoinColumns = @JoinColumn(
-//                    name = "id"))
-//    private Collection<Recipe> recipe = new HashSet<>();
-
+    private Set<Role> roles = new HashSet<>();
     public User() {
     }
 
-    public Collection<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    @Autowired
+    private static UserRoleRepository userRoleRepository;
 
     public User(String email, String password, String firstName, String lastName) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-
-        Collection<Role> userRole = new HashSet<>();
-        userRole.add(new Role("USER"));
-        this.roles = userRole;
+        this.roles = userRoleRepository.getRole(email).stream().collect(Collectors.toSet());
     }
 }

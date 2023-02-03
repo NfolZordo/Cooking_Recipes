@@ -1,8 +1,11 @@
 package com.practice.cooking_recipes.controller.privileged;
 
+import com.practice.cooking_recipes.model.Role;
 import com.practice.cooking_recipes.model.User;
+import com.practice.cooking_recipes.model.UserRole;
 import com.practice.cooking_recipes.repository.RoleRepository;
 import com.practice.cooking_recipes.repository.UserRepository;
+import com.practice.cooking_recipes.repository.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -23,6 +26,10 @@ public class AdminController {
     @Autowired
     RoleRepository roleRepository;
 
+    @Autowired
+    UserRoleRepository userRoleRepository;
+
+
     //    @PreAuthorize(true)
 //    @ResponseBody
     @GetMapping("")
@@ -36,16 +43,16 @@ public class AdminController {
     public String doModer(Model model, @RequestParam("email") String email) {
 
         User user;
+//        if (userRepository.findByEmail(email).size() == 0)
         try {
-            user = userRepository.findByEmail(email).get();
+            user = userRepository.findByEmail(email);
         }catch (Exception e) {
             model.addAttribute("error", "користувача з такою адресою не інує");
             return "/admin";
         }
-
-        user.addRoles(roleRepository.findByName("MODERATOR"));
-
-        userRepository.save(user);
+        UserRole userRole = new UserRole(user.getId(),
+                Long.valueOf(3));
+        userRoleRepository.save(userRole);
         return "/admin";
     }
 
