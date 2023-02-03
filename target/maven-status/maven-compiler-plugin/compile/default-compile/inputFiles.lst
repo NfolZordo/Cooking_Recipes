@@ -7,6 +7,7 @@ D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\CookingRecip
 D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\model\UserRecipe.java
 D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\repository\RoleRepository.java
 D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\repository\RecipesRepository.java
+D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\repository\UserRoleRepository.java
 D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\controller\MainController.java
 D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\model\User.java
 D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\model\Recipe.java
@@ -15,5 +16,6 @@ D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\controller\p
 D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\config\SecurityConfig.java
 D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\repository\UserRepository.java
 D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\controller\privileged\AdminController.java
+D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\model\UserRole.java
 D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\security\UserDetailsServiceImpl.java
 D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\controller\users\AuthController.java
