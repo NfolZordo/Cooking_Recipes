@@ -55,7 +55,7 @@ public class MainController {
     }
 
     @ResponseBody
-    @PostMapping("/search")
+    @GetMapping("/search")
     public List<Recipe> getRecipe(Model model, @RequestParam("search") String[] search) {
 
         System.out.println(search);

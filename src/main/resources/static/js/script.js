@@ -15,12 +15,16 @@ function addToFavorite(clicked_id) {
     XMLHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XMLHttp.send("recipeId=" + clicked_id);
 }
-
+// search?email=aaa
 function getRecipe(ingredients) {
     let XMLHttp = new XMLHttpRequest();
-    XMLHttp.open("POST", "/search", false);
+    // XMLHttp.open("GET", "/search", false);
+    // XMLHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // XMLHttp.send("search=" + ingredients);
+    XMLHttp.open("GET", "/search?search=" + ingredients, false);
     XMLHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    XMLHttp.send("search=" + ingredients);
+    XMLHttp.send(null);
+    console.log(XMLHttp.responseText);
     return XMLHttp.responseText;
 }
 
