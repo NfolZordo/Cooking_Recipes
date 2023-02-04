@@ -1,7 +1,6 @@
 package com.practice.cooking_recipes.controller.privileged;
 
 import com.practice.cooking_recipes.model.Recipe;
-import com.practice.cooking_recipes.model.User;
 import com.practice.cooking_recipes.repository.RecipesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

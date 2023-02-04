@@ -1,6 +1,5 @@
 package com.practice.cooking_recipes.config;
 
-import com.practice.cooking_recipes.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -30,7 +29,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-//.access("hasRole('ROLE_ADMIN')")
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -40,9 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/js/**","/static/**", "/img/**",
                         "/registration", "/getUserRoles", "/search").permitAll()
                 .antMatchers(HttpMethod.GET , "/home","/addToFavorite").authenticated()
-//                .antMatchers(HttpMethod.GET , "/admin","/admin/**").access("true")
 //                .antMatchers(HttpMethod.GET , "/admin", "/admin/**").hasAuthority("ADMIN")
-
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -74,9 +70,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         daoAuthenticationProvider.setUserDetailsService(userDetailsService);
         return daoAuthenticationProvider;
-    }
-
-    protected String chekAdmin(){
-        return "true";
     }
 }

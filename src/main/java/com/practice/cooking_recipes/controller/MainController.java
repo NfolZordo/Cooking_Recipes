@@ -58,20 +58,14 @@ public class MainController {
     @GetMapping("/search")
     public List<Recipe> getRecipe(Model model, @RequestParam("search") String[] search) {
 
-        System.out.println(search);
         List<Recipe> neededRecipes = new ArrayList<>();
         String searchUpgrade = Arrays.stream(search).map(s->s.toLowerCase())
                 .map(Objects::toString)
                 .collect(Collectors.joining("%"));
-        for (String s : search) {
-            System.out.println(s);
-        }
 
         neededRecipes = recipesRepository.findRecipeByIngredient("%" + searchUpgrade + "%");
-
         return neededRecipes;
     }
-
 }
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        if (!(authentication instanceof AnonymousAuthenticationToken)) {
