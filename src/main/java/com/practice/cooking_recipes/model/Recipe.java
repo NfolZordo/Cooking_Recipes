@@ -73,10 +73,11 @@ public class Recipe {
         this.recipe = recipe;
     }
 
-    public Recipe(String name, String recipe, String ingredients) {
+    public Recipe(String name, String recipe, String ingredients, String url) {
         this.name = name;
         this.ingredients = ingredients;
         this.recipe = recipe;
+        this.url = url;
     }
 
     public Recipe() {

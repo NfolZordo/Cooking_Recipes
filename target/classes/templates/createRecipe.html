@@ -4,13 +4,36 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body style="background-color: rgba(70, 130, 180, 0.5);">
+<div class="top-buttons">
+    <form  action="/" method="GET" >
+        <button type="submit">Головна</button>
+    </form>
+    <form  action="/home" method="GET">
+        <button type="submit">Особистий кабінет</button>
+    </form>
+</div>
 <p th:text="${error}" style="color:red;" />
-<form  action="/moder" method="POST">
-    <input type="text" name="name" placeholder="Назва рецепту">
-    <textarea name="recipe" placeholder="Рецепт(коротко)"></textarea>
-    <textarea name="ingredients" placeholder="Інгредієнти(через сому)"></textarea>
-    <button type="submit">Призначити користувача модератором</button>
+<form  action="/moder" method="POST" style="display: flex;
+flex-direction: column;
+    align-items: center;">
+    <input type="text" name="name" style="margin-top: 20px;
+        width: 500px;
+    height: 30px;" placeholder="Назва рецепту">
+    <textarea name="recipe" style="margin-top: 20px;
+        width: 500px;
+    height: 150px;"
+              placeholder="Рецепт(коротко)"></textarea>
+
+    <textarea name="ingredients" style="margin-top: 20px;
+        width: 500px;
+    height: 150px;"
+              placeholder="Інгредієнти(через сому)"></textarea>
+    <textarea name="url" style="margin-top: 20px;
+        width: 500px;
+    height: 150px;"
+              placeholder="Посилання на статтю"></textarea>
+    <button type="submit">Створити рецепт</button>
 </form>
 </body>
 </html>

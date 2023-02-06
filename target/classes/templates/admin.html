@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+
 <head>
     <meta charset="UTF-8">
     <title>Admin</title>
 </head>
-<body>
-    <form  action="/admin" method="POST">
-        <p th:text="${error}" style="color:red;" />
-        <input type="text" name="email" placeholder="email користувача якому бажаєте призначити роль">
-        <button type="submit">Призначити користувача модератором</button>
+<body style="background-color: rgba(70, 130, 180, 0.5);" >
+    <div class="top-buttons">
+        <form  action="/" method="GET" >
+            <button type="submit">Головна</button>
+        </form>
+        <form  action="/home" method="GET">
+            <button type="submit">Особистий кабінет</button>
+        </form>
+    </div>
+    <form  action="/admin" method="POST" style="position: center;
+     width: 100%;
+    height: 50px;
+    display: flex;
+">
+        <p th:text="${error}" style="color:red;" ></p>
+        <input type="text" name="email" style="height: 100%; width: 400px" placeholder="email користувача якому бажаєте призначити роль">
+        <button type="submit" style="height: 100%;">Призначити користувача модератором</button>
     </form>
 </body>
 </html>

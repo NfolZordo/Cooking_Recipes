@@ -36,6 +36,9 @@
                         <ul class="ingredients">
                             <p>Інгрідієнти</p>
                             <li th:text="${rep.recipe}"></li><br>
+                            <form th:action="${rep.url}"  target="_blank">
+                                <input type="submit" value="В улюблене" />
+                            </form>
                         </ul>
                     </div>
                 </div>

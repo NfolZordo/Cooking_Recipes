@@ -43,7 +43,8 @@ public class ModeratorController {
 
         Recipe recipe = new Recipe(request.getParameter("name"),
                 request.getParameter("recipe"),
-                request.getParameter("ingredients"));
+                request.getParameter("ingredients"),
+                request.getParameter("url"));
         recipesRepository.save(recipe);
         return "createRecipe";
     }
