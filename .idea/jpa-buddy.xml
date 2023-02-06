@@ -2,5 +2,6 @@
 <project version="4">
   <component name="JpaBuddyIdeaProjectConfig" ddlActionDbType="postgres">
     <option name="defaultUnitInitialized" value="true" />
+    <option name="reverseEngineeringLastDbConnectionId" value="01a864e3-3fe2-4d14-804b-de1acfd90319" />
   </component>
 </project>

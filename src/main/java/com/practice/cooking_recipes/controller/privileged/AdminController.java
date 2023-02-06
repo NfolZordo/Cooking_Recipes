@@ -39,13 +39,19 @@ public class AdminController {
         try {
             user = userRepository.findByEmail(email).get();
         }catch (Exception e) {
-            model.addAttribute("error", "користувача з такою адресою не інує");
+            model.addAttribute("error", "Користувача з такою адресою не інує");
             return "/admin";
         }
+        user.getRoles().contains("MODERATOR");
+        if (user.getRoles().contains("MODERATOR")) {
+            model.addAttribute("error", "Користувача з уже являється модератором");
+            return "/admin";
 
+        }
         user.addRoles(roleRepository.findByName("MODERATOR"));
 
         userRepository.save(user);
+        model.addAttribute("error", "Користувача " + user.getEmail() + " призначено модератором");
         return "/admin";
     }
 

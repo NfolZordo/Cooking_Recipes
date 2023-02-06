@@ -29,7 +29,7 @@ public class FavoriteController {
     UserRecipeRepository userRecipeRepository;
 
     @PostMapping("/addToFavorite")
-    public String addToFavorite(Model model, @RequestParam("recipeId") Integer recipeId) {
+    public String addToFavorite(@RequestParam("recipeId") Integer recipeId) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();

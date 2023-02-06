@@ -14,13 +14,13 @@ import java.util.stream.Collectors;
 public class Role {
 
     @Id
-    @Column(name = "role_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
     private Collection<User> users;
 
     public Integer getId() {

@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class UserRecipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @ManyToOne(fetch = FetchType.LAZY)
     private Recipe recipe;
     @ManyToOne(fetch = FetchType.LAZY)

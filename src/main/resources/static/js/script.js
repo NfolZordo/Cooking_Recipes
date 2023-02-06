@@ -2,7 +2,12 @@ function goTo(pageName) {
     // const path = pageName + '.html';
     document.location.href = pageName;
 }
-
+const userRoles = getUserRoles();
+let userFavorRecipe;
+if (userRoles.includes("USER")){
+    userFavorRecipe = getFavorRecipe();
+    console.log(userFavorRecipe);
+}
 
 function addToFavorite(clicked_id) {
     let XMLHttp = new XMLHttpRequest();
@@ -11,11 +16,15 @@ function addToFavorite(clicked_id) {
             alert("Авторизуйтесь для можливості добавлення рецептів в список улюблених");
         }
     };
+    let button = document.getElementById(clicked_id);
+    if (userRoles.includes("USER")) {
+        button.classList.add('red');
+    }
     XMLHttp.open("POST", "/addToFavorite", true);
     XMLHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XMLHttp.send("recipeId=" + clicked_id);
 }
-// search?email=aaa
+
 function getRecipe(ingredients) {
     let XMLHttp = new XMLHttpRequest();
     // XMLHttp.open("POST", "/search", false);
@@ -24,10 +33,76 @@ function getRecipe(ingredients) {
     XMLHttp.open("GET", "/search?search=" + ingredients, false);
     XMLHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XMLHttp.send(null);
-    console.log(XMLHttp.responseText);
+    const json = JSON.parse(XMLHttp.responseText);
+    // console.log(json[0]['name']);
+    return json;
+}
+
+function  getUserRoles() {
+    let XMLHttp = new XMLHttpRequest();
+    XMLHttp.open("GET", "/getUserRoles", false);
+    XMLHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    XMLHttp.send(null);
     return XMLHttp.responseText;
 }
 
+function  getFavorRecipe() {
+    let XMLHttp = new XMLHttpRequest();
+    XMLHttp.open("GET", "/getIdFavorRecipe", false);
+    XMLHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    XMLHttp.send(null);
+    return XMLHttp.responseText;
+}
+
+
+function addRecipe(json) {
+    let title;
+    let recipe;
+    let ingredients;
+    let addTooFavor;
+    let getMoreInfo;
+    let recipes = document.getElementById('recipes-list');
+    recipes.innerHTML = '';
+
+    for (let i = 0; i < json.length; i++) {
+        recipe = document.createElement("div");
+        recipe.style.cssText = 'margin: 5px; margin-bottom: 10px;'
+
+        title = document.createElement("h3");
+        title.innerHTML = json[i]['name'];
+
+        ingredients = document.createElement("p");
+        ingredients.innerHTML = json[i]['recipe'];
+
+        addTooFavor = createButton(json[i]['id'])
+
+        getMoreInfo = document.createElement("button");
+        getMoreInfo.innerHTML = 'Детальніше';
+        getMoreInfo.style.cssText = 'margin-left: 5px;'
+        getMoreInfo.onclick = () => window.open(json[i]['url'], '_blank');
+        getMoreInfo.href = json[i]['url'];
+
+        recipes.appendChild(recipe);
+        recipe.appendChild(title);
+        recipe.appendChild(ingredients);
+        recipe.appendChild(addTooFavor);
+        recipe.appendChild(getMoreInfo);
+
+    }
+}
+
+function createButton(id) {
+
+    let button = document.createElement("button");
+    button.id = id;
+    button.innerHTML = 'В улюблене';
+    button.onclick = () => addToFavorite(id);
+    button.style.cssText = 'margin-right: 5px;'
+    if (userFavorRecipe != null && userFavorRecipe.includes(id)){
+        button.classList.add('red');
+    }
+    return button;
+}
 
 var list = [];
 
@@ -60,7 +135,7 @@ function addToList() {
 
         if (isInList == false) {
             list.push(ingredient);
-            getRecipe(list);
+            addRecipe(getRecipe(list));
             var option = document.createElement("option");
             option.text = ingredient;
             option.value = ingredient;

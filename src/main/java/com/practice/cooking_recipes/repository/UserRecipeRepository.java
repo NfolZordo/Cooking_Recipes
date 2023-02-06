@@ -12,7 +12,7 @@ public interface UserRecipeRepository extends CrudRepository<UserRecipe, Long> {
     @Query(value =
             "SELECT * " +
                     "FROM users_recipes " +
-                    "WHERE user_id = :userId AND id = :recipeId", nativeQuery = true)
+                    "WHERE user_id = :userId AND recipe_id = :recipeId", nativeQuery = true)
     List<UserRecipeRepository> repeatCheck(
             @Param("userId") Long userId,
             @Param("recipeId") Integer recipeId

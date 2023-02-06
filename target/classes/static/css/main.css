@@ -32,9 +32,9 @@ img {
     flex: 1 1 auto;
     background-color: rgba(255, 204, 153, 0.5);
     background-image: url(../img/bg.png);
-    background-repeat: no-repeat;
+    /*background-repeat: no-repeat;*/
     background-position: center;
-    background-size: cover;
+    /*background-size: cover;*/
 }
 
 /*блок з кнопками для переходу на головну і сторінку користувача*/
@@ -207,3 +207,39 @@ footer .rights {
     text-align: right;
     vertical-align: middle;
 }
+/*/////////// Правки з беку \\\\\\\\\\\\\\\\*/
+
+.main-content .recipes-block #recipes-list {
+    width: 80%;
+    float: left;
+    overflow: auto;
+    margin-bottom: 100px;
+    min-height: 200px;
+    background-color: #fff;
+    border: 5px solid black;
+    border-radius: 25px;
+}
+
+.red {
+    background-color: red;
+}
+
+.content {
+    background-repeat: repeat-y;
+}
+/*.main-content .search-block .autocomplete { */
+/*    width: 70%; */
+/*}*/
+/*.main-content .search-block { */
+/*    margin-left: 15%; */
+/*}*/
+/*.main-content .listboxes-block select {*/
+/*    width: 70%;*/
+
+/*}*/
+/*.main-content .search-block {*/
+/*    margin-left: 15%;*/
+/*}*/
+/*.main-content .listboxes-block {*/
+/*    margin-left: 15%;*/
+/*}*/

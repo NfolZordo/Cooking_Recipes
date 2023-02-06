@@ -41,4 +41,13 @@ public class HomeController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getAuthorities().toString();
     }
+
+    @GetMapping("/getIdFavorRecipe")
+    @ResponseBody
+    public String getIdFavorRecipe() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = authentication.getName();
+        List<Integer> favorRecipes = recipesRepository.findIdFavorRecipeByEmail(currentUserName);
+        return favorRecipes.toString();
+    }
 }

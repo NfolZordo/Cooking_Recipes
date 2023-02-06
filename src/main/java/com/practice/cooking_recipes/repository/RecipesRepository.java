@@ -17,6 +17,7 @@ public interface RecipesRepository extends CrudRepository<Recipe, Integer>, JpaS
     Recipe findRecipeById(Integer id);
 
     Recipe findRecipeByName(String name);
+
     @Query(value =
             "SELECT  r.* " +
             "FROM users_recipes " +
@@ -26,6 +27,16 @@ public interface RecipesRepository extends CrudRepository<Recipe, Integer>, JpaS
     List<Recipe> findFavorRecipeByEmail(
             @Param("email") String email
     );
+
+    @Query(value =
+            "SELECT  users_recipes.recipe_id " +
+                    "FROM users_recipes " +
+                    "JOIN users u ON users_recipes.user_id = u.id " +
+                    "WHERE u.email = :email ", nativeQuery = true)
+    List<Integer> findIdFavorRecipeByEmail(
+            @Param("email") String email
+    );
+
     @Query(value =
             "SELECT * " +
             "FROM public.recipe " +
