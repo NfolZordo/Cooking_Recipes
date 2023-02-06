@@ -43,4 +43,13 @@ public class FavoriteController {
         }
         return "repeat recipe";
     }
+    @PostMapping("/deleteFromFavorite")
+    public String deleteFromFavorite(@RequestParam("recipeId") Integer recipeId) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = authentication.getName();
+        User user = userRepository.findByEmail(currentUserName).get();
+        userRecipeRepository.deleteFavorite(user.getId(),recipeId);
+        return "true";
+    }
 }
