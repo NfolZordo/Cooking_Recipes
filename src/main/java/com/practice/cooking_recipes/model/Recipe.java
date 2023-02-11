@@ -24,7 +24,7 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String name, ingredients, recipe;
+    private String name, ingredients, recipe, category;
 
     @Column(name = "url")
     private String url;
@@ -36,10 +36,6 @@ public class Recipe {
     public void setUrl(String url) {
         this.url = url;
     }
-
-//    @ManyToMany(mappedBy = "recipe")
-//    private Collection<User> users;
-
 
     public Integer getId() {
         return id;

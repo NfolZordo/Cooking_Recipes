@@ -26,6 +26,7 @@ public interface RecipesRepository extends CrudRepository<Recipe, Integer>, JpaS
             "WHERE u.email = :email ", nativeQuery = true)
     List<Recipe> findFavorRecipeByEmail(
             @Param("email") String email
+
     );
 
     @Query(value =
@@ -44,6 +45,10 @@ public interface RecipesRepository extends CrudRepository<Recipe, Integer>, JpaS
     List<Recipe> findRecipeByIngredient(
             @Param("ingredient") String ingredient
     );
+//    @Query("select r from Recipe r WHERE r.ingredients LIKE " + ingredient )
+//    List<Recipe> findRecipeByIngredient2(
+//            String ingredient
+//    );
     @Query(value =
             "SELECT * " +
                     "FROM public.recipe " +

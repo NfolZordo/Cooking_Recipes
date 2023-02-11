@@ -25,6 +25,15 @@ function addToFavorite(clicked_id) {
     XMLHttp.send("recipeId=" + clicked_id);
 }
 
+function deleteFromFavorite(clicked_id) {
+    let XMLHttp = new XMLHttpRequest();
+    let button = document.getElementById(clicked_id);
+        // зміна вигляду кнопки
+    XMLHttp.open("POST", "/deleteFromFavorite", true);
+    XMLHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    XMLHttp.send("recipeId=" + clicked_id);
+}
+
 function getRecipe(ingredients) {
     let XMLHttp = new XMLHttpRequest();
     // XMLHttp.open("POST", "/search", false);

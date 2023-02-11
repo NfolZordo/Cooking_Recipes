@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -64,6 +69,8 @@ public class MainController {
                 .collect(Collectors.joining("%"));
 
         neededRecipes = recipesRepository.findRecipeByIngredient("%" + searchUpgrade + "%");
+
+//        neededRecipes = recipesRepository.findRecipeByIngredient("SELECT * FROM public.recipe WHERE ingredients LIKE %" + searchUpgrade + "%");
         return neededRecipes;
     }
 }
