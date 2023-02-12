@@ -2,7 +2,10 @@ package com.practice.cooking_recipes.controller;
 
 import com.practice.cooking_recipes.model.Recipe;
 import com.practice.cooking_recipes.repository.RecipesRepository;
+import com.practice.cooking_recipes.repository.RecipesRepositoryCustom;
+import com.practice.cooking_recipes.repository.RecipesRepositoryCustomImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,68 +17,42 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Controller
 public class MainController {
 
-    @Autowired
-    private RecipesRepository recipesRepository;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @GetMapping("/")
-    public String getMainPage(Model model, @RequestParam(value = "search", required = false ) String search) {
-        List<Recipe> neededRecipes = new ArrayList<>();
-        if (search == null) {
-            return "main";
-        }
-
-        String searchUpgrade = Arrays.stream(search.toLowerCase().split(" ")).map(Objects::toString)
-                .collect(Collectors.joining("%"));
-
-        neededRecipes = recipesRepository.findRecipeByIngredient("%" + searchUpgrade + "%");
-
-//        else if (typeSearch.equals("ALL")) {
-//            Iterable<Recipe> allRecipes = recipesRepository.findAll();
-//            for (Recipe recipe: allRecipes) {
-//                if (Arrays.equals(Arrays.stream(recipe.getIngredients().toLowerCase().split(",")).sorted().toArray(String[]::new),
-//                        Arrays.stream(search.toLowerCase().split(",")).sorted().toArray(String[]::new))
-//                        || search.equals("*")) {
-//
-//                    neededRecipes.add(recipe);
-//                }
-//            }
-//        }
-        model.addAttribute("recipes", neededRecipes);
+    public String getMainPage(Model model) {
         return "main";
     }
 
     @ResponseBody
     @GetMapping("/search")
-    public List<Recipe> getRecipe(Model model, @RequestParam("search") String[] search) {
+    public List<Recipe> getRecipe(Model model, @RequestParam("search") String[] search,
+                                  @RequestParam("category") String[] category) {
 
         List<Recipe> neededRecipes = new ArrayList<>();
-        String searchUpgrade = Arrays.stream(search).map(s->s.toLowerCase())
+        String searchUpgrade = "%" + Arrays.stream(search).map(s->s.toLowerCase())
                 .map(Objects::toString)
-                .collect(Collectors.joining("%"));
+                .collect(Collectors.joining("%/%")) + "%";
+        String[] a = searchUpgrade.split("/");
+        Set<String> categorySet = new HashSet<String>(Arrays.asList(category));
+        RecipesRepositoryCustomImpl recipesRepositoryCustom = new RecipesRepositoryCustomImpl();
+        neededRecipes = recipesRepositoryCustom.findNedRecipe(new HashSet<String>(Arrays.asList(a)), categorySet, entityManager);
 
-        neededRecipes = recipesRepository.findRecipeByIngredient("%" + searchUpgrade + "%");
-
-//        neededRecipes = recipesRepository.findRecipeByIngredient("SELECT * FROM public.recipe WHERE ingredients LIKE %" + searchUpgrade + "%");
         return neededRecipes;
     }
 }
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-//            String currentUserName = authentication.getName();
-//            return currentUserName;
-//        }
+

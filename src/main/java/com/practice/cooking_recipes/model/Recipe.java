@@ -13,6 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.criteria.Path;
 import java.util.Collection;
 
 @Entity
@@ -28,6 +29,14 @@ public class Recipe {
 
     @Column(name = "url")
     private String url;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public String getUrl() {
         return url;

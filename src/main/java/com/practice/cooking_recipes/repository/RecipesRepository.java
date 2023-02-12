@@ -40,22 +40,13 @@ public interface RecipesRepository extends CrudRepository<Recipe, Integer>, JpaS
 
     @Query(value =
             "SELECT * " +
-            "FROM public.recipe " +
-            "WHERE ingredients LIKE :ingredient ", nativeQuery = true)
+            "FROM recipe " +
+            "WHERE ingredients LIKE :ingredient AND category IN :category", nativeQuery = true)
     List<Recipe> findRecipeByIngredient(
-            @Param("ingredient") String ingredient
+            @Param("ingredient") String ingredient,
+            @Param("category") String[] category
     );
-//    @Query("select r from Recipe r WHERE r.ingredients LIKE " + ingredient )
-//    List<Recipe> findRecipeByIngredient2(
-//            String ingredient
-//    );
-    @Query(value =
-            "SELECT * " +
-                    "FROM public.recipe " +
-                    "WHERE id = :id ", nativeQuery = true)
-    Recipe findRecipeByRecipe_id(
-            @Param("id") Long id
-    );
+
     @Query(value =
             "SELECT ingredients " +
             "FROM recipe; ", nativeQuery = true)

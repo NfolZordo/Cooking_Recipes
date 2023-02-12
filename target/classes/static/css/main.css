@@ -227,6 +227,14 @@ footer .rights {
 .content {
     background-repeat: repeat-y;
 }
+
+.checkboxes {
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr 1fr 0.5fr;
+    width: 65%;
+    font-size: 20px;
+    background-color: #FFCC99;
+}
 /*.main-content .search-block .autocomplete { */
 /*    width: 70%; */
 /*}*/

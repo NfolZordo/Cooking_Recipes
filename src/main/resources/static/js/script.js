@@ -39,7 +39,17 @@ function getRecipe(ingredients) {
     // XMLHttp.open("POST", "/search", false);
     // XMLHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     // XMLHttp.send("search=" + ingredients);
-    XMLHttp.open("GET", "/search?search=" + ingredients, false);
+    console.log(document.getElementById("first_courses").checked);
+
+    let checkboxes = document.getElementsByClassName("checkbox");
+    let category = [];
+    for(let i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked){
+            category.push(checkboxes[i].id);
+        }
+    }
+    console.log(category);
+    XMLHttp.open("GET", "/search?search=" + ingredients + "&category=" + category, false);
     XMLHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XMLHttp.send(null);
     const json = JSON.parse(XMLHttp.responseText);

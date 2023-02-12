@@ -36,14 +36,6 @@ public class User {
     public void addRoles(Role roles) {
         this.roles.add(roles);
     }
-    //    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinTable(
-//            name = "users_recipes",
-//            joinColumns = @JoinColumn(
-//                    name = "user_id" ),
-//            inverseJoinColumns = @JoinColumn(
-//                    name = "id"))
-//    private Collection<Recipe> recipe = new HashSet<>();
 
     public User() {
     }

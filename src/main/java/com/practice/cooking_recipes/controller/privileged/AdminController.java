@@ -23,8 +23,6 @@ public class AdminController {
     @Autowired
     RoleRepository roleRepository;
 
-    //    @PreAuthorize(true)
-//    @ResponseBody
     @GetMapping("")
     @PreAuthorize("hasAuthority(\"ADMIN\")")
     public String getAdminPage() {
