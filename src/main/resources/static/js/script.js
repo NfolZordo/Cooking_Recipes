@@ -4,23 +4,29 @@ function goTo(pageName) {
 }
 const userRoles = getUserRoles();
 let userFavorRecipe;
-if (userRoles.includes("USER")){
-    userFavorRecipe = getFavorRecipe();
-    console.log(userFavorRecipe);
+updateUserFavorRecipe();
+
+function updateUserFavorRecipe() {
+    if (userRoles.includes("USER")){
+        userFavorRecipe = getFavorRecipe();
+    }
 }
 
 function addToFavorite(clicked_id) {
     let XMLHttp = new XMLHttpRequest();
-    XMLHttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200 && this.responseText.length > 100 ) {
-            alert("Авторизуйтесь для можливості добавлення рецептів в список улюблених");
-        }
-    };
     let button = document.getElementById(clicked_id);
-    if (userRoles.includes("USER")) {
+    updateUserFavorRecipe();
+    if (userFavorRecipe != null && userFavorRecipe.includes(clicked_id)) {
+        button.classList.remove('red');
+        button.classList.add('green');
+        button.innerHTML = '&#10084;';
+        XMLHttp.open("POST", "/deleteFromFavorite", true);
+    } else {
+        button.classList.remove('green');
         button.classList.add('red');
+        button.innerHTML = '&#128148;';
+        XMLHttp.open("POST", "/addToFavorite", true);
     }
-    XMLHttp.open("POST", "/addToFavorite", true);
     XMLHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XMLHttp.send("recipeId=" + clicked_id);
 }
@@ -28,7 +34,13 @@ function addToFavorite(clicked_id) {
 function deleteFromFavorite(clicked_id) {
     let XMLHttp = new XMLHttpRequest();
     let button = document.getElementById(clicked_id);
-        // зміна вигляду кнопки
+
+    button.onclick = () => addToFavorite(id);
+    button.innerHTML = '&#10084;';
+    button.classList.remove('red');
+    button.classList.add('green');
+
+
     XMLHttp.open("POST", "/deleteFromFavorite", true);
     XMLHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XMLHttp.send("recipeId=" + clicked_id);
@@ -39,8 +51,6 @@ function getRecipe(ingredients) {
     // XMLHttp.open("POST", "/search", false);
     // XMLHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     // XMLHttp.send("search=" + ingredients);
-    console.log(document.getElementById("first_courses").checked);
-
     let checkboxes = document.getElementsByClassName("checkbox");
     let category = [];
     for(let i = 0; i < checkboxes.length; i++) {
@@ -48,7 +58,6 @@ function getRecipe(ingredients) {
             category.push(checkboxes[i].id);
         }
     }
-    console.log(category);
     XMLHttp.open("GET", "/search?search=" + ingredients + "&category=" + category, false);
     XMLHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XMLHttp.send(null);
@@ -93,18 +102,20 @@ function addRecipe(json) {
         ingredients = document.createElement("p");
         ingredients.innerHTML = json[i]['recipe'];
 
-        addTooFavor = createButton(json[i]['id'])
-
         getMoreInfo = document.createElement("button");
         getMoreInfo.innerHTML = 'Детальніше';
-        getMoreInfo.style.cssText = 'margin-left: 5px;'
+        getMoreInfo.style.cssText = 'margin-left: 10px; padding: 5px;'
         getMoreInfo.onclick = () => window.open(json[i]['url'], '_blank');
         getMoreInfo.href = json[i]['url'];
 
         recipes.appendChild(recipe);
         recipe.appendChild(title);
         recipe.appendChild(ingredients);
-        recipe.appendChild(addTooFavor);
+        if (userRoles.includes("USER")) {
+            addTooFavor = createButton(json[i]['id']);
+            recipe.appendChild(addTooFavor);
+        }
+
         recipe.appendChild(getMoreInfo);
 
     }
@@ -114,11 +125,16 @@ function createButton(id) {
 
     let button = document.createElement("button");
     button.id = id;
-    button.innerHTML = 'В улюблене';
     button.onclick = () => addToFavorite(id);
     button.style.cssText = 'margin-right: 5px;'
     if (userFavorRecipe != null && userFavorRecipe.includes(id)){
+        button.classList.remove('green');
         button.classList.add('red');
+        button.innerHTML = '&#128148;';
+    } else {
+        button.classList.remove('red');
+        button.classList.add('green');
+        button.innerHTML = '&#10084;';
     }
     return button;
 }
@@ -181,16 +197,27 @@ function removeFromList() {
     }
 }
 
-function showPassword() {
-    var checkbox = document.getElementById('show-password');
-    var passwordInput1 = document.getElementById('password');
-    var passwordInput2 = document.getElementById('repeatPassword');
+function showPassword(page) {
+    if (page == "reg") {
+        var checkbox = document.getElementById('show-password');
+        var passwordInput1 = document.getElementById('password');
+        var passwordInput2 = document.getElementById('password-confirm');
 
-    if (checkbox.checked) {
-        passwordInput1.type = 'text';
-        passwordInput2.type = 'text';
-    } else {
-        passwordInput1.type = 'password';
-        passwordInput2.type = 'password';
+        if (checkbox.checked) {
+            passwordInput1.type = 'text';
+            passwordInput2.type = 'text';
+        } else {
+            passwordInput1.type = 'password';
+            passwordInput2.type = 'password';
+        }
+    } else if (page == "auth") {
+        var checkbox = document.getElementById('show-password');
+        var passwordInput1 = document.getElementById('password');
+        
+        if (checkbox.checked) {
+            passwordInput1.type = 'text';
+        } else {
+            passwordInput1.type = 'password';
+        }
     }
 }

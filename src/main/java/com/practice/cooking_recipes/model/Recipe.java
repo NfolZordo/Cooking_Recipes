@@ -78,11 +78,12 @@ public class Recipe {
         this.recipe = recipe;
     }
 
-    public Recipe(String name, String recipe, String ingredients, String url) {
+    public Recipe(String name, String recipe, String ingredients, String url, String category) {
         this.name = name;
         this.ingredients = ingredients;
         this.recipe = recipe;
         this.url = url;
+        this.category = category;
     }
 
     public Recipe() {

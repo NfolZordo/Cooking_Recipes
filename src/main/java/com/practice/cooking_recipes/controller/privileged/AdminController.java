@@ -52,5 +52,4 @@ public class AdminController {
         model.addAttribute("error", "Користувача " + user.getEmail() + " призначено модератором");
         return "/admin";
     }
-
 }

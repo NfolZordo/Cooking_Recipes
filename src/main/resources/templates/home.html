@@ -12,10 +12,10 @@
         <div class="content">
             <div class="top-buttons">
                 <button id="goMainPage" onclick="goTo('/')">Головна</button>
-                <button class="hidden" id="goAdminPage" onclick="goTo('/admin')">Призначити модератора</button>
-                <button class="hidden" id="goModerPage" onclick="goTo('/moder')">Додати новий рецепт рецепт</button>
+                <button class="hidden home-buttons" id="goAdminPage" onclick="goTo('/admin')">Новий модератор</button>
+                <button class="hidden home-buttons" id="goModerPage" onclick="goTo('/moder')">Новий рецепт</button>
                 <form  action="/logout" method="POST">
-                    <button type="submit">Logout</button>
+                    <button type="submit" class="home-buttons" style="width: 100%; height: 100%;">Logout</button>
                 </form>
                 <button id="userPage" onclick="goTo('/home')">
                     <img src="/img/user1.png" alt="user">

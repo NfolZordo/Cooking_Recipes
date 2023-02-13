@@ -49,7 +49,7 @@ img {
 
 .content .top-buttons #goMainPage {
     margin-left: 5%;
-    border: 5px solid white;
+    border: 3px solid white;
     background-color: black;
     color: white;
     border-radius: 25px;
@@ -62,7 +62,8 @@ img {
     width: 65px;
     height: 65px;
     background-color: rgba(28,28,28,0);
-    border: none;
+    border: 3px solid white;
+    border-radius: 50px;
     margin-right: 5%;
 }
 
@@ -144,17 +145,16 @@ img {
 }
 
 .main-content .listboxes-block h2 {
-    color: red;
-    /*    filter: blur(8px);*/
-    backdrop-filter: blur(7px);
+    color: black;
+    background-color: lightgray;
     margin-right: 60%;
     text-align: center;
     border-radius: 50px;
     font-size: 2em;
     width: auto;
-    padding: 10px;
-    margin-bottom: 20px;
-    margin-left: 10%;
+    padding: 5px 0;
+    margin-bottom: 5px;
+    margin-left: 14%;
 }
 
 .main-content .listboxes-block select {
@@ -195,7 +195,7 @@ img {
 
 footer {
     width: 98%;
-    height: 100px;
+    height: 30px;
     float: left;
     padding: 1%;
     background-color: #FFCC99;
@@ -220,8 +220,22 @@ footer .rights {
     border-radius: 25px;
 }
 
+.main-content .recipes-block #recipes-list p {
+    font-family: 'Times New Roman';
+    font-size: 2em;
+    padding: 5px 15px;
+}
+
 .red {
     background-color: red;
+    padding: 2px;
+    margin: 2px;
+}
+
+.green {
+    background-color: green;
+    padding: 2px;
+    margin: 2px;
 }
 
 .content {
@@ -230,10 +244,16 @@ footer .rights {
 
 .checkboxes {
     display: grid;
-    grid-template: 1fr 1fr 1fr / 1fr 1fr 0.5fr;
-    width: 65%;
+    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+    width: 55%;
     font-size: 20px;
     background-color: #FFCC99;
+    margin-top: 25px;
+    border-radius: 15px;
+}
+
+.checkboxes div {
+    padding: 5px 15px;
 }
 /*.main-content .search-block .autocomplete { */
 /*    width: 70%; */

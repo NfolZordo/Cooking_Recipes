@@ -39,7 +39,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/registration", "/getUserRoles",
                         "/getIdFavorRecipe", "/search").permitAll()
                 .antMatchers(HttpMethod.GET , "/home","/addToFavorite").authenticated()
-//                .antMatchers(HttpMethod.GET , "/admin", "/admin/**").hasAuthority("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
