@@ -2,6 +2,8 @@ D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\controller\u
 D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\repository\UserRecipeRepository.java
 D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\security\SecurityUser.java
 D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\controller\users\FavoriteController.java
+D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\repository\RecipesRepositoryCustom.java
+D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\repository\RecipesRepositoryCustomImpl.java
 D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\model\Role.java
 D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\CookingRecipeApplication.java
 D:\yn\3k\Cooking_Recipes\src\main\java\com\practice\cooking_recipes\model\UserRecipe.java

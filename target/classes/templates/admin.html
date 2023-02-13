@@ -7,22 +7,18 @@
     <title>Admin</title>
 </head>
 <body style="background-color: rgba(70, 130, 180, 0.5);" >
-    <div class="top-buttons">
+    <div class="top-buttons" style="display: flex;">
         <form  action="/" method="GET" >
-            <button type="submit">Головна</button>
+            <button style="font-size: 2em; margin-right: 15px; padding: 5px; margin-bottom: 10px;" type="submit">Головна</button>
         </form>
         <form  action="/home" method="GET">
-            <button type="submit">Особистий кабінет</button>
+            <button style="font-size: 2em; margin-right: 15px; padding: 5px; margin-bottom: 10px;" type="submit">Особистий кабінет</button>
         </form>
     </div>
-    <form  action="/admin" method="POST" style="position: center;
-     width: 100%;
-    height: 50px;
-    display: flex;
-">
+    <form  action="/admin" method="POST" style="position: center; width: 100%; height: 50px; display: flex;">
         <p th:text="${error}" style="color:red;" ></p>
-        <input type="text" name="email" style="height: 100%; width: 400px" placeholder="email користувача якому бажаєте призначити роль">
-        <button type="submit" style="height: 100%;">Призначити користувача модератором</button>
+        <input type="text" name="email" style="height: 100%; width: 400px; margin-right: 10px; font-size: 1em;" placeholder="email користувача якому бажаєте призначити роль">
+        <button type="submit" style="height: 100%; font-size: 1em;">Призначити користувача модератором</button>
     </form>
 </body>
 </html>

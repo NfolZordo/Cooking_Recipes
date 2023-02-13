@@ -21,10 +21,12 @@
                 <form class="login-form" method="post" action="/registration">
                     <p th:text="${error}" style="color:red;" />
                     <input type="text" id="email" name="email" class="form-control" placeholder="Email" required>
-                    <input type="text" id="first_name" name="first_name" class="form-control" placeholder="first name" required>
-                    <input type="text" id="last_name" name="last_name" class="last_name" placeholder="last name" required>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-                    <input type="password" id="password_confirm" class="form-control" placeholder="Password confirm" required>
+                    <input type="text" id="first_name" name="first_name" class="form-control" placeholder="Введіть ім'я" required>
+                    <input type="text" id="last_name" name="last_name" class="last_name" placeholder="Введіть прізвище" required>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Введіть пароль" required>
+                    <input type="password" id="password_confirm" class="form-control" placeholder="Повторіть пароль" required><br>
+                    <input type="checkbox" onclick="showPassword('reg')" id="show-password">
+                    <label for="show-password">Показати пароль</label><br>
                     <button type="submit">Зареєстуватись</button>
                 </form>
             </div>

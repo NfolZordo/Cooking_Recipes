@@ -5,35 +5,21 @@
     <title>Title</title>
 </head>
 <body style="background-color: rgba(70, 130, 180, 0.5);">
-<div class="top-buttons">
+<div class="top-buttons" style="display: flex;">
     <form  action="/" method="GET" >
-        <button type="submit">Головна</button>
+        <button style="font-size: 2em; margin-right: 15px; padding: 5px; margin-bottom: 10px;" type="submit">Головна</button>
     </form>
     <form  action="/home" method="GET">
-        <button type="submit">Особистий кабінет</button>
+        <button style="font-size: 2em; margin-right: 15px; padding: 5px; margin-bottom: 10px;" type="submit">Особистий кабінет</button>
     </form>
 </div>
 <p th:text="${error}" style="color:red;" />
-<form  action="/moder" method="POST" style="display: flex;
-flex-direction: column;
-    align-items: center;">
-    <input type="text" name="name" style="margin-top: 20px;
-        width: 500px;
-    height: 30px;" placeholder="Назва рецепту">
-    <textarea name="recipe" style="margin-top: 20px;
-        width: 500px;
-    height: 150px;"
-              placeholder="Рецепт(коротко)"></textarea>
-
-    <textarea name="ingredients" style="margin-top: 20px;
-        width: 500px;
-    height: 150px;"
-              placeholder="Інгредієнти(через сому)"></textarea>
-    <textarea name="url" style="margin-top: 20px;
-        width: 500px;
-    height: 150px;"
-              placeholder="Посилання на статтю"></textarea>
-    <select name="user_city">
+<form  action="/moder" method="POST" style="display: flex; flex-direction: column; align-items: center;">
+    <input type="text" name="name" style="padding: 5px; margin-top: 20px; width: 500px; height: 30px;" placeholder="Назва рецепту">
+    <textarea name="recipe" style="padding: 5px; margin-top: 20px; width: 500px; height: 150px; resize: none; overflow: auto;" placeholder="Рецепт(коротко)"></textarea>
+    <textarea name="ingredients" style="padding: 5px; margin-top: 20px; width: 500px; height: 150px; resize: none; overflow: auto;" placeholder="Інгредієнти(через кому)"></textarea>
+    <textarea name="url" style="margin-top: 20px; width: 500px; height: 150px; resize: none; overflow: auto;" placeholder="Посилання на статтю"></textarea>
+    <select style="font-size: 1.5em; margin: 10px 0; padding: 5px;" name="user_city">
         <option value="first_courses">Перші страви</option>
         <option value="second_courses">Другі страви</option>
         <option value="appetizer">Закуски</option>
@@ -44,7 +30,7 @@ flex-direction: column;
         <option value="preservation">Консервування</option>
         <option value="salads">Салати</option>
     </select>
-    <button type="submit">Створити рецепт</button>
+    <button style="font-size: 1.25em; padding: 5px;" type="submit">Створити рецепт</button>
 </form>
 </body>
 </html>
