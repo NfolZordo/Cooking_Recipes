@@ -1,7 +1,6 @@
 package com.practice.cooking_recipes.repository;
 
 import com.practice.cooking_recipes.model.Recipe;
-import org.springframework.data.repository.CrudRepository;
 
 import javax.persistence.EntityManager;
 import java.util.List;

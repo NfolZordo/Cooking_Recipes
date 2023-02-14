@@ -1,5 +1,4 @@
 function goTo(pageName) {
-    // const path = pageName + '.html';
     document.location.href = pageName;
 }
 const userRoles = getUserRoles();
@@ -62,7 +61,6 @@ function getRecipe(ingredients) {
     XMLHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     XMLHttp.send(null);
     const json = JSON.parse(XMLHttp.responseText);
-    // console.log(json[0]['name']);
     return json;
 }
 
@@ -182,7 +180,7 @@ function addToList() {
         }
     }
     else {
-        alert('Введіть назву інгрідієнта');
+        alert('Введіть назву інгредієнта');
         return;
     }
 }
@@ -191,7 +189,7 @@ function removeFromList() {
     var sel = document.getElementById('ingredients-list').options.selectedIndex;
 
     if (sel == -1) {
-        alert('Виберіть інгрідієнт із списку');
+        alert('Виберіть інгредієнт із списку');
     } else {
         document.getElementById('ingredients-list').options[sel] = null;
     }

@@ -4,7 +4,6 @@ function getUserRole() {
     xmlHttp.send( null );
     return xmlHttp.responseText;
 }
-console.log(getUserRole());
 if (getUserRole().includes('ADMIN')){
     let a = document.getElementById("goAdminPage");
     a.classList.remove("hidden")

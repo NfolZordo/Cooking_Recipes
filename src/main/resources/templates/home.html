@@ -34,10 +34,10 @@
                     <label id="recipes-element" th:for="hd-+${rep.id}" th:text="${rep.name}"></label>
                     <div>
                         <ul class="ingredients">
-                            <p>Інгрідієнти</p>
+                            <p>Інгредієнти</p>
                             <li th:text="${rep.recipe}"></li><br>
                             <form th:action="${rep.url}"  target="_blank">
-                                <input type="submit" value="В улюблене" />
+                                <input type="submit" value="Детальніше" />
                             </form>
                         </ul>
                     </div>
@@ -52,9 +52,4 @@
     </div>
     <script th:src="@{js/home.js}"></script>
 </body>
-<!--<script th:inline="javascript">-->
-<!--    let userId = userName.id;-->
-<!--    let recipeId = rep.id;-->
-<!--    console.info([[${userName.firstName}]]);-->
-<!--</script>-->
 </html>

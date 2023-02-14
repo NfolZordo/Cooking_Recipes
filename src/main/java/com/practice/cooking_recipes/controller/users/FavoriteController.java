@@ -42,6 +42,7 @@ public class FavoriteController {
         }
         return "repeat recipe";
     }
+
     @PostMapping("/deleteFromFavorite")
     public String deleteFromFavorite(@RequestParam("recipeId") Integer recipeId) {
 
